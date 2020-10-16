@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import ToDoForm from './toDoForm'
+import ToDo from './toDo'
 
-export default class ToDo extends Component {
+export default class ToDoList extends Component {
     state={
         todos:[]
     }
@@ -13,8 +14,11 @@ export default class ToDo extends Component {
     render() {
         return (
             <div>
-            <ToDoForm onSubmit={this.addTodo}/>   
-            {JSON.stringify(this.state.todos)}  
+            <ToDoForm onSubmit={this.addTodo}/>  
+            {this.state.todos.map
+                 (todo => ( 
+                     <ToDo key={todo.id} text={todo.text}/>
+                 ))}
             </div>
         )
     }

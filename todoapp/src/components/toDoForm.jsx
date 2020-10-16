@@ -21,8 +21,7 @@ export default class toDoForm extends PureComponent {
             text: "" 
         })
     }
-
-
+    
     render() {
         console.log(this.state.text)
         return (
