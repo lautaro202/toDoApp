@@ -1,2 +1,2 @@
 ### Aplicación ToDo hecha en React
-## con la dependencia shortid
+# con la dependencia shortid
