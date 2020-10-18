@@ -32,6 +32,11 @@ export default class ToDoList extends Component {
             todos: state.todos.filter(todo => todo.id !== id)
         }))
     }
+    showLeftTodo = () => {
+        this.setState( state => ({
+            todos: state.todos.filter(todo => !todo.complete)
+        }))
+    }
 
 
     updateToDoToShow = (s) => {
@@ -64,7 +69,7 @@ export default class ToDoList extends Component {
                 onDelete = {() => this.onDelete(todo.id)}
                 todo={todo}
                 />
-            ))}
+            ))}<div style={{display:'flex',justifyContent:'center'}}>
                  <div>
                      todos left: {this.state.todos.filter(todo => !todo.complete).length}
                  </div>
@@ -84,9 +89,13 @@ export default class ToDoList extends Component {
                             this.updateToDoToShow('complete')}>
                             Completados:
                     </button>
-
-
+                    <button 
+                        onClick={() =>
+                            this.showLeftTodo}>
+                            remove all todos completes
+                    </button>
                  </div>
+                 </div> 
             </div>
         )
     }

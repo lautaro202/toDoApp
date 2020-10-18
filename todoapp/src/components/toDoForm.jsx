@@ -25,7 +25,7 @@ export default class toDoForm extends PureComponent {
     render() {
         console.log(this.state.text)
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit}style={{display:'flex',justifyContent:'center'}}>
             <input
                 name = 'text' 
                 value = {this.state.text} 
