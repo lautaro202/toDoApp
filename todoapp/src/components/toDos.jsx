@@ -38,6 +38,9 @@ export default class ToDoList extends Component {
                      onComplete ={() => this.onComplete(todo.id)}
                      />
                  ))}
+                 <div>
+                     todos left: {this.state.todos.filter(todo => !todo.complete).length}
+                 </div>
             </div>
         )
     }

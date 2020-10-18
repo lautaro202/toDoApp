@@ -6,7 +6,5 @@ export default props =>
     }}
     onClick = {props.onComplete}
     >
-        
-        {props.todo.text}
-
+    {props.todo.text}
     </div>
