@@ -5,7 +5,8 @@ import ToDo from './toDo'
 export default class ToDoList extends Component {
     state={
         todos:[],
-        toDosToShow: 'all'
+        toDosToShow: 'all',
+        toggleAllComplete: true
     }
     addTodo = todo =>{
         this.setState({
@@ -89,12 +90,28 @@ export default class ToDoList extends Component {
                             this.updateToDoToShow('complete')}>
                             Completados:
                     </button>
+
+                 </div>
+                 {this.state.todos.some(todo => todo.complete) ? (
+                 <div>
                     <button 
-                        onClick={() =>
+                        onClick={
                             this.showLeftTodo}>
                             remove all todos completes
                     </button>
                  </div>
+                 ): null }
+                 <button onClick={() => {
+                     this.setState({
+                         todos: this.state.todos.map(todo => ({
+                             ...todo,
+                             complete: this.state.toggleAllComplete
+                         })),
+                         toggleAllComplete: !this.state.toggleAllComplete 
+                     })
+                 }}>
+                     toggle all complete: {`${this.state.toggleAllComplete}`}
+                 </button>
                  </div> 
             </div>
         )
