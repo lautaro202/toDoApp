@@ -27,11 +27,19 @@ export default class ToDoList extends Component {
             })
         }))
     }
+    onDelete = id => {
+        this.setState( state => ({
+            todos: state.todos.filter(todo => todo.id !== id)
+        }))
+    }
+
+
     updateToDoToShow = (s) => {
         this.setState({
             toDosToShow: s
         })
     }
+
 
     render() {
         let todos = [];
@@ -53,6 +61,7 @@ export default class ToDoList extends Component {
                 <ToDo 
                 key={todo.id} 
                 onComplete ={() => this.onComplete(todo.id)}
+                onDelete = {() => this.onDelete(todo.id)}
                 todo={todo}
                 />
             ))}
