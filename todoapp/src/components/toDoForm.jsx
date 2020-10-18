@@ -31,7 +31,7 @@ export default class toDoForm extends PureComponent {
                 value = {this.state.text} 
                 onChange = {this.handleChange} 
                 placeholder = 'add todo'></input>
-                <button onClick={this.handleSubmit}>añadir todo</button>
+                <button onClick={this.handleSubmit}>añadir toDo</button>
             </form>
         )
     }

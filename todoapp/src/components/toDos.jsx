@@ -4,7 +4,8 @@ import ToDo from './toDo'
 
 export default class ToDoList extends Component {
     state={
-        todos:[]
+        todos:[],
+        toDosToShow: 'all'
     }
     addTodo = todo =>{
         this.setState({
@@ -26,20 +27,56 @@ export default class ToDoList extends Component {
             })
         }))
     }
+    updateToDoToShow = (s) => {
+        this.setState({
+            toDosToShow: s
+        })
+    }
+
     render() {
+        let todos = [];
+        if (this.state.toDosToShow === 'all') {
+            todos = this.state.todos;
+        }
+        else if (this.state.toDosToShow === 'active') {
+            todos = this.state.todos.filter(todo => !todo.complete);
+        }
+        else if (this.state.toDosToShow === 'complete') {
+            todos = this.state.todos.filter(todo => todo.complete);
+        }
+
+
         return (
             <div>
             <ToDoForm onSubmit={this.addTodo}/>  
-            {this.state.todos.map
-                 (todo => ( 
-                     <ToDo 
-                     key={todo.id} 
-                     todo={todo}
-                     onComplete ={() => this.onComplete(todo.id)}
-                     />
-                 ))}
+            {todos.map(todo => ( 
+                <ToDo 
+                key={todo.id} 
+                onComplete ={() => this.onComplete(todo.id)}
+                todo={todo}
+                />
+            ))}
                  <div>
                      todos left: {this.state.todos.filter(todo => !todo.complete).length}
+                 </div>
+                 <div>
+                    <button
+                        onClick={() =>
+                        this.updateToDoToShow('all')}>
+                            Todos:
+                    </button>
+                    <button
+                        onClick={() => 
+                        this.updateToDoToShow('active')}>
+                            Activos:
+                    </button>
+                    <button 
+                        onClick={() => 
+                            this.updateToDoToShow('complete')}>
+                            Completados:
+                    </button>
+
+
                  </div>
             </div>
         )
